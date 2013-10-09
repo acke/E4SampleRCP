@@ -3,7 +3,12 @@ package com.purplescout.sdk.parts;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
+import javax.swing.text.StyledEditorKit.ForegroundAction;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.UISynchronize;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
@@ -24,7 +29,8 @@ public class PlaygroundPart {
 	Label label;
 	private Text text;
 	protected Label lblNewLabel;
-	@Inject UISynchronize uisync;
+	@Inject
+	UISynchronize uisync;
 
 	@PostConstruct
 	public void createControls(Composite parent) {
@@ -42,27 +48,34 @@ public class PlaygroundPart {
 		new Label(parent, SWT.NONE);
 		new Label(parent, SWT.NONE);
 		new Label(parent, SWT.NONE);
-		
+
 		Button btnNewButton = new Button(parent, SWT.NONE);
-		btnNewButton.setText("New Button");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				updateSomething();
+			}
+		});
+		btnNewButton.setText("Update");
 		new Label(parent, SWT.NONE);
 		new Label(parent, SWT.NONE);
-		
+
 		Button btnNewButton_1 = new Button(parent, SWT.NONE);
 		btnNewButton_1.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
-				updateSomething();
+				text.setText("");
 			}
 
 		});
-		btnNewButton_1.setText("New Button");
+		btnNewButton_1.setText("Clean");
 		new Label(parent, SWT.NONE);
-		
+
 		lblNewLabel = new Label(parent, SWT.NONE);
-		lblNewLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		lblNewLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
+				false, 1, 1));
 		lblNewLabel.setText("New Label");
-		
+
 		text = new Text(parent, SWT.BORDER);
 		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 	}
@@ -80,14 +93,35 @@ public class PlaygroundPart {
 
 	@Inject
 	private void updateSomething() {
-		uisync.asyncExec(new Runnable() {
-			
+		
+		Job job = new Job("My test Job.") {
+
 			@Override
-			public void run() {
-				String runnableStatus = "runnable is running";
-				System.out.println(runnableStatus);
-				text.setText(runnableStatus);
+			protected IStatus run(IProgressMonitor monitor) {
+				 
+				for (int i = 0; i < 10; i++) {
+				        try {
+				          // We simulate a long running operation here
+				          Thread.sleep(1000);
+				        } catch (InterruptedException e) {
+				          e.printStackTrace();
+				        }
+				        System.out.println("Doing something" +i);
+				      }
+				   
+				uisync.asyncExec(new Runnable() {
+					
+					@Override
+					public void run() {
+						String runnableStatus = "runnable is running";
+						System.out.println(runnableStatus);
+						text.setText(runnableStatus);
+					}
+				});
+				return Status.OK_STATUS;
 			}
-		});
+		};
+		job.schedule();
+		System.out.println("Thread done");
 	}
 }
