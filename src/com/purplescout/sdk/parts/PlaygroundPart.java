@@ -2,8 +2,11 @@ package com.purplescout.sdk.parts;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.inject.Inject;
 
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.e4.ui.di.UISynchronize;
+import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -20,6 +23,7 @@ public class PlaygroundPart {
 
 	Label label;
 	private Text text;
+	protected Label lblNewLabel;
 
 	@PostConstruct
 	public void createControls(Composite parent) {
@@ -47,12 +51,14 @@ public class PlaygroundPart {
 		btnNewButton_1.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
+				updateSomething(null);
 			}
+
 		});
 		btnNewButton_1.setText("New Button");
 		new Label(parent, SWT.NONE);
 		
-		Label lblNewLabel = new Label(parent, SWT.NONE);
+		lblNewLabel = new Label(parent, SWT.NONE);
 		lblNewLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblNewLabel.setText("New Label");
 		
@@ -69,5 +75,18 @@ public class PlaygroundPart {
 	@Focus
 	private void setFocus() {
 		label.setFocus();
+	}
+
+	@Inject
+	private void updateSomething(UISynchronize uisync) {
+		uisync.asyncExec(new Runnable() {
+			
+			@Override
+			public void run() {
+				String runnableStatus = "runnable is running";
+				System.out.println(runnableStatus);
+				text.setText(runnableStatus);
+			}
+		});
 	}
 }
