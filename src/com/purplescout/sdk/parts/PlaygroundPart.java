@@ -24,6 +24,7 @@ public class PlaygroundPart {
 	Label label;
 	private Text text;
 	protected Label lblNewLabel;
+	@Inject UISynchronize uisync;
 
 	@PostConstruct
 	public void createControls(Composite parent) {
@@ -51,7 +52,7 @@ public class PlaygroundPart {
 		btnNewButton_1.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
-				updateSomething(null);
+				updateSomething();
 			}
 
 		});
@@ -78,7 +79,7 @@ public class PlaygroundPart {
 	}
 
 	@Inject
-	private void updateSomething(UISynchronize uisync) {
+	private void updateSomething() {
 		uisync.asyncExec(new Runnable() {
 			
 			@Override
