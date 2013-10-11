@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_EPbHUC9ZEeOOMI-1xFBODg" elementId="org.eclipse.e4.ide.application" bindingContexts="_EPbHWS9ZEeOOMI-1xFBODg">
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_EPbHUS9ZEeOOMI-1xFBODg" label="com.purplescout.sdk" width="500" height="400">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_EPbHUS9ZEeOOMI-1xFBODg" label="com.purplescout.sdk" x="100" y="100" width="400" height="600">
     <children xsi:type="advanced:PerspectiveStack" xmi:id="_1E0UcC9PEeOOMI-1xFBODg" elementId="org.example.e4.rcp.todo.perspectivestack.0">
       <children xsi:type="advanced:Perspective" xmi:id="_4Zo7MC9PEeOOMI-1xFBODg" elementId="org.example.e4.rcp.todo.perspective.0" label="Todo">
         <children xsi:type="basic:PartSashContainer" xmi:id="_GqRdUC9SEeOOMI-1xFBODg" elementId="org.example.e4.rcp.todo.partsashcontainer.0" horizontal="true">
@@ -27,6 +27,9 @@
       <children xsi:type="menu:Menu" xmi:id="_EPbHbi9ZEeOOMI-1xFBODg" label="Help">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_EPbHby9ZEeOOMI-1xFBODg" label="About" command="_EPbHZi9ZEeOOMI-1xFBODg"/>
       </children>
+      <children xsi:type="menu:Menu" xmi:id="_k1LlMDJREeOQJ8LjWLLvkw" elementId="com.purplescout.sdk.menu.edit" label="Edit">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_QgLOMDJBEeOQJ8LjWLLvkw" elementId="" label="ThemeSwitcher" command="_smMvoDI_EeOQJ8LjWLLvkw"/>
+      </children>
     </mainMenu>
     <trimBars xmi:id="_EPbHdS9ZEeOOMI-1xFBODg">
       <children xsi:type="menu:ToolBar" xmi:id="_EPbHdi9ZEeOOMI-1xFBODg" elementId="toolbar:org.eclipse.ui.main.toolbar">
@@ -39,6 +42,7 @@
   <handlers xmi:id="_EPbHYS9ZEeOOMI-1xFBODg" elementId="com.purplescout.sdk.handler.openCommand" contributionURI="bundleclass://com.purplescout.sdk/com.purplescout.sdk.handlers.OpenHandler" command="_EPbHYC9ZEeOOMI-1xFBODg"/>
   <handlers xmi:id="_EPbHZC9ZEeOOMI-1xFBODg" elementId="com.purplescout.sdk.handler.saveCommand" contributionURI="bundleclass://com.purplescout.sdk/com.purplescout.sdk.handlers.SaveHandler" command="_EPbHYy9ZEeOOMI-1xFBODg"/>
   <handlers xmi:id="_EPbHZy9ZEeOOMI-1xFBODg" elementId="com.purplescout.sdk.handler.aboutCommand" contributionURI="bundleclass://com.purplescout.sdk/com.purplescout.sdk.handlers.AboutHandler" command="_EPbHZi9ZEeOOMI-1xFBODg"/>
+  <handlers xmi:id="_yhXtkDI_EeOQJ8LjWLLvkw" elementId="com.purplescout.sdk.handler.themeSwitcher" contributionURI="bundleclass://com.purplescout.sdk/com.purplescout.sdk.handlers.ThemeSwitchHandler" command="_smMvoDI_EeOQJ8LjWLLvkw"/>
   <bindingTables xmi:id="_EPbHXi9ZEeOOMI-1xFBODg" bindingContext="_EPbHWS9ZEeOOMI-1xFBODg">
     <bindings xmi:id="_EPbHXy9ZEeOOMI-1xFBODg" keySequence="M1+Q" command="_EPbHXC9ZEeOOMI-1xFBODg"/>
     <bindings xmi:id="_EPbHYi9ZEeOOMI-1xFBODg" keySequence="M1+O" command="_EPbHYC9ZEeOOMI-1xFBODg"/>
@@ -53,6 +57,7 @@
   <commands xmi:id="_EPbHYC9ZEeOOMI-1xFBODg" elementId="com.purplescout.sdk.open" commandName="openCommand"/>
   <commands xmi:id="_EPbHYy9ZEeOOMI-1xFBODg" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>
   <commands xmi:id="_EPbHZi9ZEeOOMI-1xFBODg" elementId="org.eclipse.ui.help.aboutAction" commandName="aboutCommand"/>
+  <commands xmi:id="_smMvoDI_EeOQJ8LjWLLvkw" elementId="com.purplescout.sdk.command.themeswitcher" commandName="themeSwitcher"/>
   <addons xmi:id="_EPbHUi9ZEeOOMI-1xFBODg" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_EPbHUy9ZEeOOMI-1xFBODg" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_EPbHVC9ZEeOOMI-1xFBODg" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>

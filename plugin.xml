@@ -12,14 +12,27 @@
                value="true">
          </property>
          <property
-               name="applicationCSS"
-               value="platform:/plugin/com.purplescout.sdk/css/default.css">
-         </property>
-         <property
                name="appName"
                value="com.purplescout.sdk">
          </property>
+         <property
+               name="cssTheme"
+               value="com.purplescout.sdk.standardTheme">
+         </property>
       </product>
+   </extension>
+   <extension
+         point="org.eclipse.e4.ui.css.swt.theme">
+      <theme
+            basestylesheeturi="css/default.css"
+            id="com.purplescout.sdk.standardTheme"
+            label="standard">
+      </theme>
+      <theme
+            basestylesheeturi="css/red.css"
+            id="com.purplescout.sdk.themeRed"
+            label="red">
+      </theme>
    </extension>
 
 </plugin>
